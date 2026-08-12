@@ -49,18 +49,43 @@ export const services = [
 
 export const publicReviewSummaries = [
   {
-    name: 'Angela T.',
-    label: 'Public review summary',
-    quote: 'Described the A/C service as honest and straightforward, with clear communication throughout the visit.'
+    name: 'Angela Taylor',
+    label: 'Google review',
+    quote: 'Booking was simple. Jeremiah was on time, kept me aware during every step. He took care of my air conditioner in an honest and upfront way. I am a customer for life.'
   },
   {
-    name: 'Local customers',
-    label: 'Public review theme',
-    quote: 'Customer feedback repeatedly highlights responsive communication, clear pricing and work completed as quoted.'
+    name: 'Tracy Reynolds',
+    label: 'Google review',
+    quote: 'Jeremiah Jordan is simply the best. Humble, straight shooting, effective, efficient, and extremely kind. I wholeheartedly recommend Orion for your service needs!'
   },
   {
-    name: 'Public review profile',
-    label: '5.0 rating · 6 reviews',
-    quote: 'All six reviews on the public profile are five-star reviews, with several customers specifically mentioning Jeremiah.'
+    name: 'Bill Emerson',
+    label: 'Google review',
+    quote: 'The job was done when promised and was billed according to the estimate we had received. I would trust Jeremiah & Orion Home Services with any project I may have.'
+  },
+  {
+    name: 'Wyatt Smith',
+    label: 'Google review',
+    quote: 'Jeremiah and his team do phenomenal work. I would highly recommend Orion home services to anybody needing any kind of home service. Anything from bathroom remodels to additions, Jeremiah should be your first pick.'
+  },
+  {
+    name: 'Laura Bayne',
+    label: 'Google review',
+    quote: 'Jeremiah was an incredible help when our dryer was having issues. He came out and generously offered to remove a grate we were concerned was the issue for free and offered to send a quote for a new vent location.'
+  },
+  {
+    name: 'Connie Tucker',
+    label: 'Google review',
+    quote: 'Highly Recommend! Orion Heating & Cooling provided excellent service from start to finish.'
+  },
+  {
+    name: 'Ashleigh Woodruff',
+    label: 'Google review',
+    quote: 'I recently had an excellent experience with Orion, owned by Jeremiah Jordan. When my upstairs air conditioning went out, he and his team quickly diagnosed the issue and replaced the unit within two days.'
+  },
+  {
+    name: 'Trey Thompson',
+    label: 'Google review',
+    quote: 'Great work and service!'
   }
 ];
