@@ -34,5 +34,68 @@ const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site) : Astro.u
     <Header />
     <main><slot /></main>
     <Footer />
+    <script>
+      const revealGroups = [
+        ['.hero-copy .kicker, .page-hero-grid > .section-index', 'wipe'],
+        ['.hero-copy h1, .page-hero-grid h1, .root-cause-heading h2, .reviews-intro h2', 'headline'],
+        ['.hero-lead, .page-hero-grid > div > p', 'rise'],
+        ['.hero-actions, .page-hero-grid .btn', 'pop'],
+        ['.hero-aside', 'slide-left'],
+        ['.intro-strip-grid > .section-index, .reviews-intro, .contact-band-copy, .contact-info-panel', 'slide-right'],
+        ['.intro-strip-grid > div, .about-copy, .owner-copy', 'rise'],
+        ['.root-cause-copy, .reviews-editorial-grid .review-carousel', 'slide-left'],
+        ['.about-brand-panel, .owner-placeholder', 'tilt'],
+        ['.contact-band-form, .contact-form-card', 'scale'],
+        ['.symptom-editorial-grid > div:first-child, .values-editorial-grid > div:first-child, .reviews-archive-head > div', 'slide-right'],
+        ['.editorial-cta', 'clip'],
+        ['.footer-main > *', 'rise']
+      ];
+
+      revealGroups.forEach(([selector, type]) => {
+        document.querySelectorAll(selector).forEach((el) => {
+          if (!el.hasAttribute('data-reveal')) el.setAttribute('data-reveal', type);
+        });
+      });
+
+      const staggerGroups = [
+        ['.service-row', ['slide-right', 'rise', 'slide-left']],
+        ['.symptom-list-home > div', ['line']],
+        ['.service-detail', ['rise']],
+        ['.symptom-editorial-list > div', ['line']],
+        ['.value-list article', ['slide-right', 'slide-left']],
+        ['.credential-row > div', ['pop']],
+        ['.review-list-editorial article', ['review']],
+        ['.contact-methods > *', ['line']]
+      ];
+
+      staggerGroups.forEach(([selector, types]) => {
+        document.querySelectorAll(selector).forEach((el, index) => {
+          if (!el.hasAttribute('data-reveal')) {
+            el.setAttribute('data-reveal', types[index % types.length]);
+          }
+          el.style.setProperty('--reveal-delay', `${Math.min(index, 5) * 70}ms`);
+        });
+      });
+
+      const revealItems = [...document.querySelectorAll('[data-reveal]')];
+      if (revealItems.length) {
+        document.documentElement.classList.add('reveal-ready');
+        const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        if (reducedMotion || !('IntersectionObserver' in window)) {
+          revealItems.forEach((item) => item.classList.add('is-visible'));
+        } else {
+          const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting) return;
+              entry.target.classList.add('is-visible');
+              observer.unobserve(entry.target);
+            });
+          }, { rootMargin: '0px 0px -9% 0px', threshold: 0.12 });
+
+          revealItems.forEach((item) => observer.observe(item));
+        }
+      }
+    </script>
   </body>
 </html>
