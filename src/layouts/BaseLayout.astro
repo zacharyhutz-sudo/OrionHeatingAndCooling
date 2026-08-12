@@ -79,21 +79,56 @@ const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site) : Astro.u
 
       const revealItems = [...document.querySelectorAll('[data-reveal]')];
       if (revealItems.length) {
-        document.documentElement.classList.add('reveal-ready');
         const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
         if (reducedMotion || !('IntersectionObserver' in window)) {
           revealItems.forEach((item) => item.classList.add('is-visible'));
         } else {
+          /*
+           * Capture items that are already on screen before the reveal styles are
+           * activated. This keeps the desktop hero from being trapped in its clipped
+           * starting state on browsers that do not immediately fire an observer entry.
+           */
+          const initiallyVisible = new Set(
+            revealItems.filter((item) => {
+              const rect = item.getBoundingClientRect();
+              return rect.bottom > 0 && rect.top < window.innerHeight * 0.96;
+            })
+          );
+
+          const reveal = (item) => {
+            item.classList.add('is-visible');
+          };
+
           const observer = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {
               if (!entry.isIntersecting) return;
-              entry.target.classList.add('is-visible');
+              reveal(entry.target);
               observer.unobserve(entry.target);
             });
-          }, { rootMargin: '0px 0px -9% 0px', threshold: 0.12 });
+          }, { rootMargin: '0px 0px -5% 0px', threshold: 0.06 });
 
-          revealItems.forEach((item) => observer.observe(item));
+          document.documentElement.classList.add('reveal-ready');
+
+          revealItems.forEach((item) => {
+            if (!initiallyVisible.has(item)) observer.observe(item);
+          });
+
+          /* Two frames preserve the entrance animation while guaranteeing above-fold content appears. */
+          window.requestAnimationFrame(() => {
+            window.requestAnimationFrame(() => {
+              initiallyVisible.forEach(reveal);
+            });
+          });
+
+          /* Fail-safe: never leave visible-page content hidden if an observer is interrupted. */
+          window.setTimeout(() => {
+            revealItems.forEach((item) => {
+              if (item.classList.contains('is-visible')) return;
+              const rect = item.getBoundingClientRect();
+              if (rect.bottom > 0 && rect.top < window.innerHeight * 1.08) reveal(item);
+            });
+          }, 1200);
         }
       }
     </script>

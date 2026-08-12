@@ -514,7 +514,9 @@ body {
 .contact-direct,
 .contact-methods,
 .credential-row span,
-.plain-list,
+.value-list article > span,
+.symptom-editorial-list span,
+.owner-placeholder span,
 .form-note,
 .formspark-draft-warning {
   font-family: var(--sans);
@@ -1211,6 +1213,66 @@ p,
   .reveal-ready [data-reveal="rise"],
   .reveal-ready [data-reveal="headline"],
   .reveal-ready [data-reveal="review"] { transform: translate3d(0, 24px, 0); }
+}
+
+/* Typography + usability cleanup */
+.service-description h3,
+.service-scope h3 {
+  font-family: var(--serif);
+  font-size: clamp(1.38rem, 1.7vw, 1.65rem);
+  font-weight: 500;
+  letter-spacing: -.012em;
+  line-height: 1.16;
+}
+.plain-list {
+  font-family: var(--serif);
+}
+.plain-list li {
+  font-family: var(--serif);
+  font-size: 1rem;
+  line-height: 1.45;
+}
+.service-detail-number,
+.service-number,
+.value-list article > span,
+.symptom-editorial-list span,
+.review-number {
+  font-family: var(--sans);
+}
+
+/* Anchor links should land cleanly below the header area. */
+#energy,
+#reviews {
+  scroll-margin-top: 118px;
+}
+
+/* Clear keyboard focus without changing the desktop visual language. */
+.btn:focus-visible,
+.arrow-link:focus-visible,
+.text-action:focus-visible,
+.desktop-nav a:focus-visible,
+.header-phone:focus-visible,
+.footer-nav a:focus-visible,
+.footer-contact a:focus-visible,
+.review-controls button:focus-visible,
+.menu-toggle:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 4px;
+}
+
+/* Release browser compositing once an entrance animation is complete. */
+.reveal-ready [data-reveal].is-visible {
+  will-change: auto;
+}
+
+@media (max-width: 560px) {
+  .service-description h3,
+  .service-scope h3 {
+    font-size: 1.38rem;
+  }
+  .plain-list li {
+    font-size: .98rem;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
