@@ -1,0 +1,9 @@
+---
+import { withBase } from '../data/site.js';
+const { variant = 'full', class: className = '' } = Astro.props;
+---
+{variant === 'icon' ? (
+  <img class={className} src={withBase('images/orion-icon.png')} alt="Orion Heating & Cooling icon" />
+) : (
+  <img class={className} src={withBase('images/orion-logo.png')} alt="Orion Heating & Cooling — Heating, Cooling, Energy" />
+)}

@@ -1,0 +1,50 @@
+---
+import BrandMark from './BrandMark.astro';
+import Icon from './Icon.astro';
+import { nav, site, withBase } from '../data/site.js';
+const basePath = import.meta.env.BASE_URL.replace(/\/$/, '');
+const path = Astro.url.pathname.replace(basePath, '').replace(/\/$/, '') || '/';
+---
+<header class="site-header" data-header>
+  <div class="utility-bar">
+    <div class="container utility-inner">
+      <span>Licensed · Insured · Family-Owned · Local</span>
+      <a href={`tel:${site.phoneHref}`}><Icon name="phone" size={16} /> {site.phoneDisplay}</a>
+    </div>
+  </div>
+  <div class="container nav-shell">
+    <a class="brand-link" href={withBase('')} aria-label="Orion Heating & Cooling home">
+      <BrandMark class="header-logo" />
+    </a>
+    <nav class="desktop-nav" aria-label="Primary navigation">
+      {nav.map((item) => {
+        const route = item.href ? `/${item.href}` : '/';
+        const active = route === '/' ? path === '/' : path.startsWith(route);
+        return <a class:list={{ active }} href={withBase(item.href)}>{item.label}</a>;
+      })}
+    </nav>
+    <div class="nav-actions">
+      <a class="btn btn-primary btn-small desktop-cta" href={withBase('contact')}>Request Service <Icon name="arrow" size={17} /></a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open navigation" data-menu-toggle>
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobile-menu" data-mobile-menu>
+    <div class="container mobile-menu-inner">
+      {nav.map((item) => <a href={withBase(item.href)}>{item.label}</a>)}
+      <a class="btn btn-primary" href={withBase('contact')}>Request Service</a>
+      <a class="mobile-phone" href={`tel:${site.phoneHref}`}><Icon name="phone" size={19} /> {site.phoneDisplay}</a>
+    </div>
+  </div>
+</header>
+<script>
+  const toggle = document.querySelector('[data-menu-toggle]');
+  const menu = document.querySelector('[data-mobile-menu]');
+  toggle?.addEventListener('click', () => {
+    const open = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', String(!open));
+    menu?.classList.toggle('open', !open);
+    document.body.classList.toggle('menu-open', !open);
+  });
+</script>

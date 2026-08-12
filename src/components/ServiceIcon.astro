@@ -1,0 +1,22 @@
+---
+const { type = 'cool' } = Astro.props;
+---
+<div class:list={['service-icon', type]} aria-hidden="true">
+  {type === 'cool' && (
+    <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
+      <path d="M32 7v50M10.5 19.5l43 25M10.5 44.5l43-25"/>
+      <path d="m26 11 6 5 6-5M26 53l6-5 6 5M13 25l8-1 1-8M51 39l-8 1-1 8M13 39l8 1 1 8M51 25l-8-1-1-8"/>
+    </svg>
+  )}
+  {type === 'heat' && (
+    <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M34 7c2 10-7 11-4 22 2 6 8 7 9 13 1 7-4 13-11 14-10 2-19-5-19-16 0-9 6-15 12-21-1 8 3 11 6 12 0-8 8-12 7-24Z"/>
+      <path d="M32 55c-5-1-8-5-7-10 1-4 4-6 6-10 0 5 5 7 5 12 0 4-2 7-4 8Z"/>
+    </svg>
+  )}
+  {type === 'energy' && (
+    <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M35 5 17 34h14l-2 25 18-32H33l2-22Z"/>
+    </svg>
+  )}
+</div>

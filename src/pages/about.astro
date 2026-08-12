@@ -1,0 +1,77 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+import BrandMark from '../components/BrandMark.astro';
+import { publicReviewSummaries, withBase } from '../data/site.js';
+---
+<BaseLayout title="About & Reviews | Orion Heating & Cooling" description="Meet Jeremiah and Calina Jordan, the husband-and-wife team behind Orion Heating & Cooling, and learn about Orion's HVAC and home-energy approach.">
+  <section class="page-hero about-page-hero">
+    <div class="container about-hero-grid">
+      <div class="page-hero-inner no-pad">
+        <span class="eyebrow light">About Orion</span>
+        <h1>Local service with a whole-home point of view.</h1>
+        <p>Orion was created to help homeowners understand their homes, make confident decisions and invest in comfort that lasts.</p>
+      </div>
+      <div class="about-hero-mark"><BrandMark variant="icon" /></div>
+    </div>
+  </section>
+
+  <section class="section owner-story">
+    <div class="container owner-grid">
+      <div class="owner-placeholder">
+        <div class="photo-placeholder-icon"><BrandMark variant="icon" /></div>
+        <div><strong>Jeremiah & Calina Jordan</strong><span>Owner photo from the current site can be added here once supplied as an original file.</span></div>
+      </div>
+      <div class="owner-copy">
+        <span class="eyebrow">Meet the owners</span>
+        <h2>Jeremiah & Calina Jordan</h2>
+        <p>Orion Heating & Cooling was founded in February 2025 by husband-and-wife team Jeremiah and Calina Jordan with a simple goal: help homeowners create more comfortable, energy-efficient homes through trusted HVAC services and professional energy audits.</p>
+        <p>Jeremiah leads the technical work with more than 10 years of HVAC experience. He holds a Georgia HVAC license and is BPI certified, giving him training to evaluate both heating and cooling equipment and the way the home itself uses energy.</p>
+        <p>That combination supports Orion's focus on honest insight, reliable service and practical solutions that improve comfort, efficiency and long-term system performance.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section values-section">
+    <div class="container">
+      <div class="section-heading centered"><span class="eyebrow">The Orion approach</span><h2>Better answers start with better questions.</h2></div>
+      <div class="value-grid">
+        <article><span class="number">01</span><h3>Find the root cause</h3><p>Look beyond the immediate symptom to understand equipment, airflow and whole-home performance.</p></article>
+        <article><span class="number">02</span><h3>Explain the options</h3><p>Give homeowners straightforward information so they can make smart decisions for their home and budget.</p></article>
+        <article><span class="number">03</span><h3>Build for the long term</h3><p>Prioritize dependable comfort and efficiency instead of temporary band-aid fixes.</p></article>
+      </div>
+      <div class="credential-row">
+        <div><strong>10+</strong><span>Years HVAC experience</span></div>
+        <div><strong>GA</strong><span>HVAC licensed</span></div>
+        <div><strong>BPI</strong><span>Certified</span></div>
+        <div><strong>LOCAL</strong><span>Family-owned</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section reviews-archive" id="reviews">
+    <div class="container">
+      <div class="section-heading split-heading">
+        <div><span class="eyebrow">Reviews</span><h2>Five-star feedback.</h2></div>
+        <p>A public review profile currently indexes six 5-star reviews for Orion. The first draft uses careful summaries rather than inventing testimonial quotes.</p>
+      </div>
+      <div class="review-card-grid">
+        {publicReviewSummaries.map((review) => (
+          <article class="review-card">
+            <div class="stars warm">★★★★★</div>
+            <p>“{review.quote}”</p>
+            <div><strong>{review.name}</strong><span>{review.label}</span></div>
+          </article>
+        ))}
+      </div>
+      <div class="review-draft-note"><Icon name="star" size={20} /><span><strong>Before launch:</strong> swap these summaries for the exact Google reviews the client wants featured. The carousel and layout are already built for them.</span></div>
+    </div>
+  </section>
+
+  <section class="section cta-panel-section">
+    <div class="container cta-panel">
+      <div><span class="eyebrow light">Ready when you are</span><h2>Let's make your home more comfortable.</h2></div>
+      <a class="btn btn-light" href={withBase('contact')}>Request Service <Icon name="arrow" size={18} /></a>
+    </div>
+  </section>
+</BaseLayout>

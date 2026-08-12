@@ -1,0 +1,54 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+import ServiceIcon from '../components/ServiceIcon.astro';
+import { services, withBase } from '../data/site.js';
+---
+<BaseLayout title="HVAC & Energy Services | Orion Heating & Cooling" description="Heating repair, cooling repair, HVAC installation, maintenance and home-energy assessments serving Oconee County and surrounding areas.">
+  <section class="page-hero page-hero-services">
+    <div class="container page-hero-inner">
+      <span class="eyebrow light">Services</span>
+      <h1>Heating, cooling and energy solutions that work together.</h1>
+      <p>Orion focuses on lasting comfort and efficient performance—from HVAC repair and replacement to understanding why a home may be wasting energy.</p>
+      <a class="btn btn-primary" href={withBase('contact')}>Schedule Your Service <Icon name="arrow" size={18} /></a>
+    </div>
+  </section>
+
+  <section class="section service-detail-section">
+    <div class="container service-detail-stack">
+      {services.map((service, i) => (
+        <article id={service.icon === 'energy' ? 'energy' : undefined} class={`service-detail ${service.icon}`}>
+          <div class="service-detail-head">
+            <ServiceIcon type={service.icon} />
+            <div><span class="eyebrow">{service.eyebrow}</span><h2>{service.title}</h2></div>
+          </div>
+          <div class="service-detail-grid">
+            <div>
+              <p class="lead">{service.description}</p>
+              <h3>Common problems</h3>
+              <ul class="check-list">
+                {service.problems.map((problem) => <li><Icon name="check" size={18} /> {problem}</li>)}
+              </ul>
+            </div>
+            <div class="solution-panel">
+              <span class="solution-kicker">How Orion helps</span>
+              {service.icon === 'heat' && <><h3>Diagnosis first. Then the right repair.</h3><p>Orion can evaluate heating performance, explain what is happening and recommend repair, maintenance or replacement based on the condition of the system and the needs of the home.</p><ul><li>Heating diagnostics & repair</li><li>System replacement & installation</li><li>Preventative maintenance</li><li>Airflow & comfort troubleshooting</li></ul></>}
+              {service.icon === 'cool' && <><h3>Restore cooling without guesswork.</h3><p>From an A/C that won't keep up to recurring comfort issues, Orion looks at operation, airflow and efficiency before recommending the next step.</p><ul><li>A/C diagnostics & repair</li><li>System replacement & installation</li><li>Preventative maintenance</li><li>Humidity & airflow troubleshooting</li></ul></>}
+              {service.icon === 'energy' && <><h3>Look at the house as a complete system.</h3><p>Professional home-energy assessments can uncover problems that equipment replacement alone may not solve, including air leakage, insufficient insulation, duct issues and inefficient system operation.</p><ul><li>Home energy assessments</li><li>Air-leakage evaluation</li><li>Insulation & building-envelope review</li><li>Duct and HVAC performance evaluation</li></ul></>}
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="section symptom-section">
+    <div class="container">
+      <div class="section-heading centered"><span class="eyebrow">Not sure what you need?</span><h2>Start with what you're experiencing.</h2><p>You do not need to diagnose the system before calling. Tell Orion what you see, hear or feel.</p></div>
+      <div class="symptom-grid">
+        {['My power bill is too high','My A/C runs constantly','Some rooms are hotter or colder','My system keeps breaking down','My home feels humid','My HVAC system is getting old'].map((item) => <div class="symptom-card"><span></span><strong>{item}</strong></div>)}
+      </div>
+      <div class="center-actions"><a class="btn btn-dark" href={withBase('contact')}>Tell Us What's Going On <Icon name="arrow" size={18} /></a></div>
+    </div>
+  </section>
+</BaseLayout>

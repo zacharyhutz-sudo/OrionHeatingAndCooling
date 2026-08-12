@@ -1,0 +1,130 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+import BrandMark from '../components/BrandMark.astro';
+import ServiceIcon from '../components/ServiceIcon.astro';
+import ReviewCarousel from '../components/ReviewCarousel.astro';
+import ContactForm from '../components/ContactForm.astro';
+import { services, site, withBase } from '../data/site.js';
+---
+<BaseLayout title="Orion Heating & Cooling | Comfort, Efficiency & Energy" description="Orion Heating & Cooling provides local HVAC repair, installation, maintenance and home-energy assessments for Oconee County and surrounding areas.">
+  <section class="hero section-dark">
+    <div class="hero-glow hero-glow-cool"></div>
+    <div class="hero-glow hero-glow-warm"></div>
+    <div class="container hero-grid">
+      <div class="hero-copy reveal">
+        <span class="eyebrow light">Heating · Cooling · Energy</span>
+        <h1>Comfort you can count on.<br /><span>Efficiency you can feel.</span></h1>
+        <p>Local HVAC service and whole-home energy expertise built to solve the problem—not just cover it up.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href={withBase('contact')}>Get a Free Estimate <Icon name="arrow" size={18} /></a>
+          <a class="btn btn-ghost" href={`tel:${site.phoneHref}`}><Icon name="phone" size={18} /> {site.phoneDisplay}</a>
+        </div>
+        <div class="hero-trust">
+          <span><Icon name="shield" size={18} /> Licensed & Insured</span>
+          <span><Icon name="home" size={18} /> Family-Owned</span>
+          <span><Icon name="wrench" size={18} /> 10+ Years Experience</span>
+        </div>
+      </div>
+      <div class="hero-visual reveal delay-1">
+        <div class="hero-mark-wrap">
+          <div class="orbit orbit-one"></div>
+          <div class="orbit orbit-two"></div>
+          <BrandMark variant="icon" class="hero-mark" />
+          <div class="comfort-chip chip-cool"><span>COOLING</span><strong>Comfort</strong></div>
+          <div class="comfort-chip chip-warm"><span>HEATING</span><strong>Reliability</strong></div>
+          <div class="comfort-chip chip-energy"><span>ENERGY</span><strong>Efficiency</strong></div>
+        </div>
+      </div>
+    </div>
+    <div class="container hero-stats">
+      <div><strong>Local</strong><span>Oconee County & nearby communities</span></div>
+      <div><strong>Certified</strong><span>Georgia HVAC license + BPI expertise</span></div>
+      <div><strong>Focused</strong><span>Long-term comfort and lower energy waste</span></div>
+    </div>
+  </section>
+
+  <section class="section services-preview">
+    <div class="container">
+      <div class="section-heading split-heading">
+        <div><span class="eyebrow">What we do</span><h2>One home. Three parts of comfort.</h2></div>
+        <p>Orion brings HVAC experience and building-performance knowledge together to help your home heat, cool and use energy more effectively.</p>
+      </div>
+      <div class="service-card-grid">
+        {services.map((service) => (
+          <article class={`service-card ${service.icon}`}>
+            <ServiceIcon type={service.icon} />
+            <span class="eyebrow">{service.eyebrow}</span>
+            <h3>{service.title}</h3>
+            <p>{service.description}</p>
+            <a class="text-link" href={withBase('services')}>Explore {service.eyebrow} <Icon name="arrow" size={17} /></a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section problem-section">
+    <div class="container problem-grid">
+      <div class="problem-copy">
+        <span class="eyebrow">High power bill?</span>
+        <h2>The HVAC system isn't always the whole problem.</h2>
+        <p>A home works as a system. Air leakage, insulation, ducts, equipment and airflow can all affect comfort and monthly utility costs. Orion looks for the root cause before recommending the fix.</p>
+        <a class="btn btn-dark" href={`${withBase('services')}#energy`}>Explore Energy Solutions <Icon name="arrow" size={18} /></a>
+      </div>
+      <div class="diagnostic-card">
+        <div class="diagnostic-header"><span>Common signs</span><span class="status-dot">Worth investigating</span></div>
+        <ul class="diagnostic-list">
+          <li><span class="diag-icon cool"><Icon name="thermometer" size={18} /></span><div><strong>Rooms never stay comfortable</strong><small>Uneven temperatures or weak airflow</small></div></li>
+          <li><span class="diag-icon warm"><Icon name="energy" size={18} /></span><div><strong>Power bills keep climbing</strong><small>Energy loss may extend beyond the HVAC unit</small></div></li>
+          <li><span class="diag-icon neutral"><Icon name="wrench" size={18} /></span><div><strong>Your system runs constantly</strong><small>Equipment, duct or building-envelope issues</small></div></li>
+        </ul>
+        <div class="diagnostic-footer">Start with the symptom. Orion will help find the cause.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section about-preview">
+    <div class="container about-grid">
+      <div class="about-visual">
+        <div class="about-icon-card"><BrandMark variant="icon" class="about-mark" /><span>Serving Oconee County</span></div>
+        <div class="experience-card"><strong>10+</strong><span>years of hands-on HVAC experience</span></div>
+      </div>
+      <div class="about-copy">
+        <span class="eyebrow">Meet Orion</span>
+        <h2>Modern HVAC knowledge. Old-school integrity.</h2>
+        <p>Founded in 2025 by husband-and-wife team Jeremiah and Calina Jordan, Orion Heating & Cooling was built around a simple goal: help homeowners create more comfortable, energy-efficient homes through trusted HVAC service and professional energy assessments.</p>
+        <p>Jeremiah brings more than a decade of industry experience, a Georgia HVAC license and BPI certification to every recommendation.</p>
+        <a class="text-link strong" href={withBase('about')}>Meet Jeremiah & Calina <Icon name="arrow" size={18} /></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section reviews-section section-dark">
+    <div class="container reviews-grid">
+      <div class="reviews-intro">
+        <span class="eyebrow light">Customer feedback</span>
+        <h2>Built around the kind of service people remember.</h2>
+        <p>Responsive communication, transparent pricing and straightforward problem solving are recurring themes in Orion's public reviews.</p>
+        <div class="rating-lockup"><strong>5.0</strong><div><div class="stars">★★★★★</div><span>6 publicly indexed reviews</span></div></div>
+        <a class="btn btn-ghost" href={`${withBase('about')}#reviews`}>See Reviews <Icon name="arrow" size={18} /></a>
+      </div>
+      <ReviewCarousel />
+    </div>
+  </section>
+
+  <section class="section contact-band">
+    <div class="container contact-band-grid">
+      <div class="contact-band-copy">
+        <span class="eyebrow">Let's get your home comfortable</span>
+        <h2>Tell us what you're noticing.</h2>
+        <p>Whether your system stopped working, your energy bill jumped or one room never feels right, send Orion the details and we'll take it from there.</p>
+        <div class="contact-direct">
+          <a href={`tel:${site.phoneHref}`}><Icon name="phone" size={20} /><span><small>Call</small>{site.phoneDisplay}</span></a>
+          <a href={`mailto:${site.email}`}><Icon name="mail" size={20} /><span><small>Email</small>{site.email}</span></a>
+        </div>
+      </div>
+      <ContactForm compact={true} />
+    </div>
+  </section>
+</BaseLayout>

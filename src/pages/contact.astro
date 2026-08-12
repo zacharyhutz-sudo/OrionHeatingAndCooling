@@ -1,0 +1,39 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+import ContactForm from '../components/ContactForm.astro';
+import { site } from '../data/site.js';
+const success = Astro.url.searchParams.get('success') === '1';
+---
+<BaseLayout title="Contact Orion Heating & Cooling | Request HVAC Service" description="Request heating, cooling or home-energy service from Orion Heating & Cooling in Oconee County and surrounding areas.">
+  <section class="page-hero contact-page-hero">
+    <div class="container page-hero-inner">
+      <span class="eyebrow light">Contact</span>
+      <h1>Tell us what your home is doing.</h1>
+      <p>Share what you're noticing and how to reach you. Orion can help determine the next best step.</p>
+    </div>
+  </section>
+
+  <section class="section contact-page-section">
+    <div class="container contact-page-grid">
+      <aside class="contact-info-panel">
+        <span class="eyebrow">Get in touch</span>
+        <h2>Local help is one call away.</h2>
+        <p>Serving homeowners across Oconee County and surrounding communities with heating, cooling and energy solutions.</p>
+        <div class="contact-methods">
+          <a href={`tel:${site.phoneHref}`}><span><Icon name="phone" size={22} /></span><div><small>Phone</small><strong>{site.phoneDisplay}</strong></div></a>
+          <a href={`mailto:${site.email}`}><span><Icon name="mail" size={22} /></span><div><small>Email</small><strong>{site.email}</strong></div></a>
+          <div><span><Icon name="home" size={22} /></span><div><small>Service area</small><strong>{site.serviceArea}</strong></div></div>
+        </div>
+        <div class="contact-trust-box"><Icon name="shield" size={24} /><div><strong>Licensed · Insured · Family-Owned</strong><span>Local service backed by 10+ years of hands-on HVAC experience.</span></div></div>
+      </aside>
+      <div class="contact-form-card">
+        {success && <div class="success-message"><Icon name="check" size={22} /><div><strong>Thanks for reaching out.</strong><span>Your request was submitted.</span></div></div>}
+        <span class="eyebrow">Request service</span>
+        <h2>How can Orion help?</h2>
+        <ContactForm />
+        <p class="formspark-draft-warning"><strong>Draft note:</strong> Replace <code>YOUR_FORMSPARK_ID</code> in <code>src/data/site.js</code> after creating the Formspark form.</p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

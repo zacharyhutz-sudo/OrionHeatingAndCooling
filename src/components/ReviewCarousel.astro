@@ -1,0 +1,44 @@
+---
+import Icon from './Icon.astro';
+import { publicReviewSummaries } from '../data/site.js';
+---
+<div class="review-carousel" data-review-carousel>
+  <div class="review-track">
+    {publicReviewSummaries.map((review, i) => (
+      <article class:list={['review-slide', { active: i === 0 }]} data-review-slide aria-hidden={i === 0 ? 'false' : 'true'}>
+        <div class="review-stars" aria-label="5 stars">★★★★★</div>
+        <blockquote>“{review.quote}”</blockquote>
+        <div class="review-meta">
+          <strong>{review.name}</strong>
+          <span>{review.label}</span>
+        </div>
+      </article>
+    ))}
+  </div>
+  <div class="review-controls" aria-label="Review carousel controls">
+    {publicReviewSummaries.map((_, i) => <button class:list={{ active: i === 0 }} type="button" aria-label={`Show review ${i + 1}`} data-review-dot={i}></button>)}
+  </div>
+  <p class="review-source-note">Draft uses summaries of publicly indexed reviews. Replace with the client's preferred verified review copy before launch.</p>
+</div>
+<script>
+  const carousel = document.querySelector('[data-review-carousel]');
+  if (carousel) {
+    const slides = [...carousel.querySelectorAll('[data-review-slide]')];
+    const dots = [...carousel.querySelectorAll('[data-review-dot]')];
+    let current = 0;
+    let timer;
+    const show = (next) => {
+      current = next;
+      slides.forEach((slide, index) => {
+        slide.classList.toggle('active', index === current);
+        slide.setAttribute('aria-hidden', index === current ? 'false' : 'true');
+      });
+      dots.forEach((dot, index) => dot.classList.toggle('active', index === current));
+    };
+    const play = () => { timer = window.setInterval(() => show((current + 1) % slides.length), 6000); };
+    dots.forEach((dot, index) => dot.addEventListener('click', () => {
+      window.clearInterval(timer); show(index); play();
+    }));
+    play();
+  }
+</script>

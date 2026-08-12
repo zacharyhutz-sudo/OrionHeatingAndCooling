@@ -1,0 +1,37 @@
+---
+import BrandMark from './BrandMark.astro';
+import Icon from './Icon.astro';
+import { nav, site, withBase } from '../data/site.js';
+const year = new Date().getFullYear();
+---
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <BrandMark class="footer-logo" />
+      <p>Heating, cooling and home-energy solutions built around long-term comfort, efficiency and honest service.</p>
+      <div class="footer-badges"><span>Licensed</span><span>Insured</span><span>Family-Owned</span></div>
+    </div>
+    <div>
+      <h3>Explore</h3>
+      <nav class="footer-links" aria-label="Footer navigation">
+        {nav.map((item) => <a href={withBase(item.href)}>{item.label}</a>)}
+      </nav>
+    </div>
+    <div>
+      <h3>Contact</h3>
+      <div class="footer-links contact-links">
+        <a href={`tel:${site.phoneHref}`}><Icon name="phone" size={18} /> {site.phoneDisplay}</a>
+        <a href={`mailto:${site.email}`}><Icon name="mail" size={18} /> {site.email}</a>
+        <span><Icon name="home" size={18} /> {site.serviceArea}</span>
+      </div>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <span>© {year} Orion Heating & Cooling. All rights reserved.</span>
+    <span>Comfort · Efficiency · Energy</span>
+  </div>
+</footer>
+<div class="mobile-callbar">
+  <a href={`tel:${site.phoneHref}`}><Icon name="phone" size={19} /> Call Orion</a>
+  <a href={withBase('contact')}>Request Service</a>
+</div>
