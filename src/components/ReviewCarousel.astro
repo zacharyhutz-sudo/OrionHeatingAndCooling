@@ -1,5 +1,4 @@
 ---
-import Icon from './Icon.astro';
 import { publicReviewSummaries } from '../data/site.js';
 ---
 <div class="review-carousel" data-review-carousel>
@@ -7,18 +6,20 @@ import { publicReviewSummaries } from '../data/site.js';
     {publicReviewSummaries.map((review, i) => (
       <article class:list={['review-slide', { active: i === 0 }]} data-review-slide aria-hidden={i === 0 ? 'false' : 'true'}>
         <div class="review-stars" aria-label="5 stars">★★★★★</div>
-        <blockquote>“{review.quote}”</blockquote>
-        <div class="review-meta">
+        <blockquote>{review.quote}</blockquote>
+        <footer>
           <strong>{review.name}</strong>
           <span>{review.label}</span>
-        </div>
+        </footer>
       </article>
     ))}
   </div>
   <div class="review-controls" aria-label="Review carousel controls">
-    {publicReviewSummaries.map((_, i) => <button class:list={{ active: i === 0 }} type="button" aria-label={`Show review ${i + 1}`} data-review-dot={i}></button>)}
+    <span class="review-count">Customer feedback</span>
+    <div>
+      {publicReviewSummaries.map((_, i) => <button class:list={{ active: i === 0 }} type="button" aria-label={`Show review ${i + 1}`} data-review-dot={i}>{String(i + 1).padStart(2, '0')}</button>)}
+    </div>
   </div>
-  <p class="review-source-note">Draft uses summaries of publicly indexed reviews. Replace with the client's preferred verified review copy before launch.</p>
 </div>
 <script>
   const carousel = document.querySelector('[data-review-carousel]');
@@ -35,7 +36,7 @@ import { publicReviewSummaries } from '../data/site.js';
       });
       dots.forEach((dot, index) => dot.classList.toggle('active', index === current));
     };
-    const play = () => { timer = window.setInterval(() => show((current + 1) % slides.length), 6000); };
+    const play = () => { timer = window.setInterval(() => show((current + 1) % slides.length), 7000); };
     dots.forEach((dot, index) => dot.addEventListener('click', () => {
       window.clearInterval(timer); show(index); play();
     }));

@@ -1,5 +1,4 @@
 ---
-import Icon from './Icon.astro';
 import { site, withBase } from '../data/site.js';
 const { compact = false } = Astro.props;
 ---
@@ -23,7 +22,9 @@ const { compact = false } = Astro.props;
       <option>Not sure / other</option>
     </select>
   </label>
-  <label>How can we help? <span>*</span><textarea name="message" rows={compact ? 4 : 5} required placeholder="Tell us what you're noticing in your home..."></textarea></label>
-  <button class="btn btn-primary form-submit" type="submit">Request Service <Icon name="arrow" size={18} /></button>
-  <p class="form-note">Prefer to talk? Call <a href={`tel:${site.phoneHref}`}>{site.phoneDisplay}</a>.</p>
+  <label>How can we help? <span>*</span><textarea name="message" rows={compact ? 4 : 5} required placeholder="Tell us what you are noticing..."></textarea></label>
+  <div class="form-submit-row">
+    <button class="btn btn-primary form-submit" type="submit">Request service</button>
+    <p class="form-note">Prefer to talk? <a href={`tel:${site.phoneHref}`}>{site.phoneDisplay}</a></p>
+  </div>
 </form>
