@@ -1,41 +1,42 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Icon from '../components/Icon.astro';
 import { services, withBase } from '../data/site.js';
 ---
 <BaseLayout title="HVAC & Energy Services | Orion Heating & Cooling" description="Heating repair, cooling repair, HVAC installation, maintenance and home-energy assessments serving Oconee County and surrounding areas.">
-  <section class="page-hero editorial-page-hero">
+  <section class="page-hero editorial-page-hero services-page-hero">
     <div class="container page-hero-grid">
       <p class="section-index">Services</p>
       <div>
-        <h1>Heating, cooling and energy solutions for the whole home.</h1>
+        <h1>Cooling, heating and energy solutions for the whole home.</h1>
         <p>From repairs and replacement to home-energy assessments, Orion starts with what is actually happening in your home and recommends the next step from there.</p>
         <a class="btn btn-primary" href={withBase('contact')}>Request service</a>
       </div>
     </div>
   </section>
 
-  <section class="section service-detail-section">
-    <div class="container service-detail-stack">
+  <section class="service-feature-section">
+    <div class="container service-feature-stack">
       {services.map((service, i) => (
-        <article id={service.icon === 'energy' ? 'energy' : undefined} class={`service-detail ${service.icon}`}>
-          <header class="service-detail-head">
-            <span class="service-detail-number">0{i + 1}</span>
-            <div>
-              <span class="service-accent" aria-hidden="true"></span>
-              <p class="kicker">{service.eyebrow}</p>
-              <h2>{service.title}</h2>
+        <article id={service.anchor} class={`service-feature ${service.icon}`}>
+          <div class="service-feature-band">
+            <div class="service-feature-meta">
+              <span>0{i + 1}</span>
+              <span>{service.eyebrow}</span>
             </div>
-          </header>
-          <div class="service-detail-grid">
-            <div class="service-description">
-              <p class="lead">{service.description}</p>
+            <img class="service-feature-icon" src={withBase(service.brandIcon)} alt="" aria-hidden="true" />
+            <h2>{service.title}</h2>
+          </div>
+
+          <div class="service-feature-content">
+            <div class="service-feature-copy">
+              <p class="service-feature-lead">{service.description}</p>
               <h3>Common concerns</h3>
-              <ul class="plain-list">
+              <ul class="plain-list service-feature-list">
                 {service.problems.map((problem) => <li>{problem}</li>)}
               </ul>
             </div>
-            <div class="service-scope">
+
+            <div class="service-feature-scope">
               <p class="kicker">How Orion helps</p>
               {service.icon === 'heat' && <><h3>Heating service without guesswork.</h3><p>Orion evaluates heating performance, explains what is happening and recommends repair, maintenance or replacement based on the condition of the system and the needs of the home.</p><ul class="plain-list"><li>Heating diagnostics & repair</li><li>System replacement & installation</li><li>Preventative maintenance</li><li>Airflow & comfort troubleshooting</li></ul></>}
               {service.icon === 'cool' && <><h3>Practical cooling solutions for Georgia homes.</h3><p>From an A/C that will not keep up to recurring comfort issues, Orion looks at operation, airflow and efficiency before recommending the next step.</p><ul class="plain-list"><li>A/C diagnostics & repair</li><li>System replacement & installation</li><li>Preventative maintenance</li><li>Humidity & airflow troubleshooting</li></ul></>}

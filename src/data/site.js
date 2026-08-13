@@ -25,23 +25,29 @@ export const nav = [
 
 export const services = [
   {
-    eyebrow: 'Heating',
-    title: 'Heating service & repair.',
-    icon: 'heat',
-    description: 'Heating diagnostics, repairs, system replacement, installation and preventative maintenance focused on dependable comfort and long-term efficiency.',
-    problems: ['Uneven heating or cold spots', 'High winter energy bills', 'Frequent breakdowns', 'Aging systems struggling to keep up']
-  },
-  {
     eyebrow: 'Cooling',
     title: 'Cooling service & repair.',
     icon: 'cool',
+    anchor: 'cooling',
+    brandIcon: 'images/services/orion-cooling.png',
     description: 'Air-conditioning diagnostics, repairs, replacement, installation and maintenance with attention to airflow, humidity and system performance.',
     problems: ['AC runs constantly but does not cool', 'High summer energy bills', 'Poor airflow or humidity issues', 'Frequent cooling-system breakdowns']
+  },
+  {
+    eyebrow: 'Heating',
+    title: 'Heating service & repair.',
+    icon: 'heat',
+    anchor: 'heating',
+    brandIcon: 'images/services/orion-heating.png',
+    description: 'Heating diagnostics, repairs, system replacement, installation and preventative maintenance focused on dependable comfort and long-term efficiency.',
+    problems: ['Uneven heating or cold spots', 'High winter energy bills', 'Frequent breakdowns', 'Aging systems struggling to keep up']
   },
   {
     eyebrow: 'Energy',
     title: 'Home energy solutions.',
     icon: 'energy',
+    anchor: 'energy',
+    brandIcon: 'images/services/orion-energy.png',
     description: 'Whole-home energy assessments that look beyond the equipment to help identify air leakage, insulation, duct and performance issues that can drive high utility bills.',
     problems: ['Rising utility bills', 'HVAC constantly cycling', 'Rooms that never stay comfortable', 'Older systems wasting energy']
   }

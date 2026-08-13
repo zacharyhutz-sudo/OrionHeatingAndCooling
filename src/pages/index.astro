@@ -34,23 +34,26 @@ import { services, site, withBase } from '../data/site.js';
     <div class="container intro-strip-grid">
       <p class="section-index">01 / Services</p>
       <div>
-        <h2>Heating, cooling and energy expertise under one roof.</h2>
+        <h2>Cooling, heating and energy expertise under one roof.</h2>
         <p>Orion combines practical HVAC experience with whole-home building-performance knowledge, so recommendations are based on what your home actually needs.</p>
       </div>
     </div>
   </section>
 
-  <section class="services-editorial">
-    <div class="container service-list">
+  <section class="services-editorial services-brand-section">
+    <div class="container service-brand-grid">
       {services.map((service, i) => (
-        <article class={`service-row ${service.icon}`}>
-          <div class="service-number">0{i + 1}</div>
-          <div class="service-title">
-            <span class="service-accent" aria-hidden="true"></span>
-            <h3>{service.eyebrow}</h3>
+        <article class={`service-brand-card ${service.icon}`}>
+          <div class="service-brand-card-top">
+            <span class="service-brand-number">0{i + 1}</span>
+            <img class="service-brand-icon" src={withBase(service.brandIcon)} alt="" aria-hidden="true" />
           </div>
-          <p>{service.description}</p>
-          <a class="arrow-link" href={withBase('services')} aria-label={`Learn more about ${service.eyebrow}`}>Learn more <Icon name="arrow" size={16} /></a>
+          <div class="service-brand-card-copy">
+            <p class="service-brand-kicker">{service.eyebrow}</p>
+            <h3>{service.title}</h3>
+            <p>{service.description}</p>
+          </div>
+          <a class="service-brand-link" href={`${withBase('services')}#${service.anchor}`} aria-label={`Learn more about ${service.eyebrow}`}>Explore {service.eyebrow.toLowerCase()} <Icon name="arrow" size={18} /></a>
         </article>
       ))}
     </div>

@@ -18,7 +18,7 @@ const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site) : Astro.u
     <meta name="theme-color" content="#231f20" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=EB+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="canonical" href={canonical} />
     <link rel="icon" href={withBase('favicon.ico')} sizes="any" />
     <link rel="icon" type="image/png" href={withBase('favicon-64.png')} />
@@ -58,9 +58,9 @@ const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site) : Astro.u
       });
 
       const staggerGroups = [
-        ['.service-row', ['slide-right', 'rise', 'slide-left']],
+        ['.service-brand-card', ['slide-right', 'rise', 'slide-left']],
         ['.symptom-list-home > div', ['line']],
-        ['.service-detail', ['rise']],
+        ['.service-feature', ['rise']],
         ['.symptom-editorial-list > div', ['line']],
         ['.value-list article', ['slide-right', 'slide-left']],
         ['.credential-row > div', ['pop']],
