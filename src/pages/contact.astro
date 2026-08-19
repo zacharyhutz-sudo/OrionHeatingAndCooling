@@ -4,6 +4,7 @@ import Icon from '../components/Icon.astro';
 import ContactForm from '../components/ContactForm.astro';
 import { site } from '../data/site.js';
 const success = Astro.url.searchParams.get('success') === '1';
+const formError = Astro.url.searchParams.get('form_error') === '1';
 ---
 <BaseLayout title="Contact Orion Heating & Cooling | Request HVAC Service" description="Request heating, cooling or home-energy service from Orion Heating & Cooling in Oconee County and surrounding areas.">
   <section class="page-hero editorial-page-hero contact-page-hero">
@@ -31,6 +32,7 @@ const success = Astro.url.searchParams.get('success') === '1';
       </aside>
       <div class="contact-form-card">
         {success && <div class="success-message"><Icon name="check" size={20} /><div><strong>Thanks for reaching out.</strong><span>Your request was submitted.</span></div></div>}
+        {formError && <div class="form-error-message" role="alert"><div><strong>Something went wrong.</strong><span>Your request may not have been sent. Please try again or call Orion directly.</span></div></div>}
         <p class="section-index">Request service</p>
         <h2>How can Orion help?</h2>
         <ContactForm />

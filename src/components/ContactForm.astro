@@ -1,9 +1,16 @@
 ---
 import { site, withBase } from '../data/site.js';
 const { compact = false } = Astro.props;
+
+const siteUrl = Astro.site ?? Astro.url;
+const redirectUrl = new URL(withBase('thank-you'), siteUrl).href;
+const errorUrl = new URL(withBase('contact'), siteUrl);
+errorUrl.searchParams.set('form_error', '1');
 ---
 <form class:list={['contact-form', { compact }]} action={site.formsparkAction} method="POST">
-  <input type="hidden" name="_redirect" value={`${withBase('contact')}?success=1`} />
+  <input type="hidden" name="_redirect" value={redirectUrl} />
+  <input type="hidden" name="_error" value={errorUrl.href} />
+  <input type="hidden" name="_append" value="false" />
   <div class="form-row">
     <label>First name <span>*</span><input name="first_name" type="text" autocomplete="given-name" required /></label>
     <label>Last name<input name="last_name" type="text" autocomplete="family-name" /></label>

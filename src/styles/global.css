@@ -1829,3 +1829,162 @@ h1,
     filter: blur(8px) saturate(1.08);
   }
 }
+
+
+/* Formspark confirmation + error states */
+.form-error-message {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  margin-bottom: 28px;
+  padding: 16px 18px;
+  border-left: 3px solid var(--red);
+  background: rgba(234, 62, 58, .07);
+}
+.form-error-message div { display: flex; flex-direction: column; gap: 2px; }
+.form-error-message strong { font-family: var(--sans); font-size: .82rem; }
+.form-error-message span { color: var(--ink-soft); font-size: .84rem; }
+
+/* Dedicated on-brand Formspark success destination */
+.thank-you-page {
+  position: relative;
+  min-height: calc(100vh - 104px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 8% 18%, rgba(0, 174, 239, .18), transparent 28%),
+    radial-gradient(circle at 88% 16%, rgba(234, 62, 58, .12), transparent 26%),
+    radial-gradient(circle at 92% 82%, rgba(252, 198, 14, .12), transparent 22%),
+    #fff;
+}
+.thank-you-shell {
+  display: grid;
+  grid-template-columns: 150px minmax(0, 1.25fr) minmax(260px, .65fr);
+  gap: clamp(36px, 6vw, 84px);
+  align-items: center;
+  padding-top: clamp(72px, 9vw, 120px);
+  padding-bottom: clamp(72px, 9vw, 120px);
+}
+.thank-you-brand {
+  align-self: start;
+  padding-top: 8px;
+}
+.thank-you-logo {
+  width: 104px;
+  height: auto;
+}
+.thank-you-copy {
+  max-width: 760px;
+}
+.thank-you-check {
+  width: 58px;
+  height: 58px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 28px;
+  border: 1px solid var(--ink);
+  background: #fff;
+  color: var(--blue);
+}
+.thank-you-copy h1 {
+  max-width: 720px;
+  margin-bottom: 30px;
+  font-size: clamp(4rem, 8vw, 7.2rem);
+}
+.thank-you-lead {
+  max-width: 680px;
+  margin-bottom: 0;
+  font-family: var(--serif);
+  font-size: clamp(1.08rem, 1.6vw, 1.28rem);
+  line-height: 1.58;
+}
+.thank-you-actions {
+  display: flex;
+  align-items: center;
+  gap: 26px;
+  flex-wrap: wrap;
+  margin-top: 36px;
+}
+.thank-you-next {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: clamp(26px, 4vw, 48px);
+  border-left: 1px solid var(--line);
+}
+.thank-you-next > p:not(.section-index) {
+  font-family: var(--serif);
+  font-size: 1.02rem;
+}
+.thank-you-contact-line {
+  display: grid;
+  gap: 6px;
+  margin-top: 28px;
+  padding-top: 20px;
+  border-top: 1px solid var(--ink);
+  font-family: var(--sans);
+}
+.thank-you-contact-line span {
+  color: var(--ink-soft);
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+.thank-you-contact-line a {
+  width: fit-content;
+  color: var(--blue-deep);
+  font-size: .92rem;
+  font-weight: 700;
+}
+.thank-you-service-rule {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  min-height: 48px;
+  font-family: var(--sans);
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+.thank-you-service-rule span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 20px;
+}
+.thank-you-service-rule span:nth-child(1) { background: linear-gradient(90deg, var(--cyan), var(--blue)); color: #fff; }
+.thank-you-service-rule span:nth-child(2) { background: linear-gradient(90deg, var(--red), var(--orange)); color: #fff; }
+.thank-you-service-rule span:nth-child(3) { background: linear-gradient(90deg, var(--gold), #f89939); color: var(--ink); }
+
+@media (max-width: 900px) {
+  .thank-you-shell {
+    grid-template-columns: 100px minmax(0, 1fr);
+  }
+  .thank-you-next {
+    grid-column: 2;
+    padding: 26px 0 0;
+    border-left: 0;
+    border-top: 1px solid var(--line);
+  }
+}
+
+@media (max-width: 560px) {
+  .thank-you-page { min-height: auto; }
+  .thank-you-shell {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    padding-top: 54px;
+    padding-bottom: 54px;
+  }
+  .thank-you-brand { display: none; }
+  .thank-you-next { grid-column: auto; }
+  .thank-you-copy h1 { font-size: clamp(3.45rem, 18vw, 5rem); }
+  .thank-you-actions { align-items: flex-start; flex-direction: column; gap: 18px; }
+  .thank-you-actions .btn { width: 100%; }
+  .thank-you-service-rule { font-size: .62rem; }
+  .thank-you-service-rule span { padding-inline: 8px; }
+}

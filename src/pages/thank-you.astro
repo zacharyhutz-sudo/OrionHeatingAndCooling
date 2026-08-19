@@ -1,0 +1,45 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+import BrandMark from '../components/BrandMark.astro';
+import { site, withBase } from '../data/site.js';
+---
+<BaseLayout
+  title="Request Received | Orion Heating & Cooling"
+  description="Your service request has been sent to Orion Heating & Cooling."
+>
+  <section class="thank-you-page">
+    <div class="container thank-you-shell">
+      <div class="thank-you-brand" aria-hidden="true">
+        <BrandMark variant="icon" class="thank-you-logo" />
+      </div>
+
+      <div class="thank-you-copy">
+        <p class="section-index">Request received</p>
+        <div class="thank-you-check"><Icon name="check" size={30} strokeWidth={2.2} /></div>
+        <h1>Thanks. We’ve got it.</h1>
+        <p class="thank-you-lead">Your service request has been sent to Orion Heating & Cooling. We’ll review what you shared and follow up using the contact information you provided.</p>
+
+        <div class="thank-you-actions">
+          <a class="btn btn-primary" href={`tel:${site.phoneHref}`}>Call Orion</a>
+          <a class="arrow-link strong" href={withBase('')}>Back to home <Icon name="arrow" size={16} /></a>
+        </div>
+      </div>
+
+      <aside class="thank-you-next">
+        <p class="section-index">What happens next</p>
+        <p>We’ll look over the details of your request so the conversation can start with the right context.</p>
+        <div class="thank-you-contact-line">
+          <span>Need help sooner?</span>
+          <a href={`tel:${site.phoneHref}`}>{site.phoneDisplay}</a>
+        </div>
+      </aside>
+    </div>
+
+    <div class="thank-you-service-rule" aria-hidden="true">
+      <span>Cooling</span>
+      <span>Heating</span>
+      <span>Energy</span>
+    </div>
+  </section>
+</BaseLayout>
