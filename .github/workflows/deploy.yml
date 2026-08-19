@@ -35,22 +35,11 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Resolve GitHub Pages base path
-        shell: bash
-        run: |
-          REPO_NAME="${GITHUB_REPOSITORY#*/}"
-
-          if [ "$REPO_NAME" = "${GITHUB_REPOSITORY_OWNER}.github.io" ]; then
-            DEFAULT_BASE="/"
-          else
-            DEFAULT_BASE="/$REPO_NAME"
-          fi
-
-          if [ -n "${{ vars.PUBLIC_BASE_PATH }}" ]; then
-            echo "PUBLIC_BASE_PATH=${{ vars.PUBLIC_BASE_PATH }}" >> "$GITHUB_ENV"
-          else
-            echo "PUBLIC_BASE_PATH=$DEFAULT_BASE" >> "$GITHUB_ENV"
-          fi
+     - name: Build
+        env:
+        PUBLIC_SITE_URL: https://orionheatingandcooling.net
+       PUBLIC_BASE_PATH: /
+        run: npm run build
 
       - name: Build
         run: npm run build
