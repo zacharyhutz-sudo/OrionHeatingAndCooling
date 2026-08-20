@@ -1,8 +1,8 @@
 export const site = {
   name: 'Orion Heating & Cooling',
   shortName: 'Orion',
-  phoneDisplay: '(706) 521-2995',
-  phoneHref: '+17065212995',
+  phoneDisplay: '(706) 521-9277',
+  phoneHref: '+17065219277',
   email: 'orionheatingandcoolingllc@gmail.com',
   serviceArea: 'Oconee County & surrounding areas',
   facebook: 'https://www.facebook.com/people/Orion-Heating-Cooling/61572976589696/',
